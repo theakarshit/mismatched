@@ -14,9 +14,10 @@ export default function IntroSplash() {
                 <Reveal>
                     <div style={{
                         display: 'flex',
-                        flexDirection: 'column',
+                        flexDirection: 'row',
                         alignItems: 'center',
-                        gap: '8px',
+                        justifyContent: 'center',
+                        gap: '12px',
                         marginBottom: '40px',
                     }}>
                         <span style={{
@@ -33,7 +34,7 @@ export default function IntroSplash() {
                             src="/images/mismatched_logo_transparent.png"
                             alt="Mismatched"
                             style={{
-                                height: '42px',
+                                height: '70px',
                                 width: 'auto',
                                 objectFit: 'contain',
                                 filter: 'drop-shadow(0 0 8px rgba(255, 107, 107, 0.3))',
