@@ -13,15 +13,32 @@ export default function IntroSplash() {
                 {/* Netflix-style "M" watermark */}
                 <Reveal>
                     <div style={{
-                        fontSize: '0.75rem',
-                        letterSpacing: '6px',
-                        textTransform: 'uppercase',
-                        color: 'var(--netflix-red)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '8px',
                         marginBottom: '40px',
-                        fontFamily: 'var(--font-body)',
-                        fontWeight: 500
                     }}>
-                        inspired by mismatched
+                        <span style={{
+                            fontSize: '0.75rem',
+                            letterSpacing: '6px',
+                            textTransform: 'uppercase',
+                            color: 'var(--netflix-red)',
+                            fontFamily: 'var(--font-body)',
+                            fontWeight: 500
+                        }}>
+                            inspired by
+                        </span>
+                        <img
+                            src="/images/mismatched_logo_transparent.png"
+                            alt="Mismatched"
+                            style={{
+                                height: '42px',
+                                width: 'auto',
+                                objectFit: 'contain',
+                                filter: 'drop-shadow(0 0 8px rgba(255, 107, 107, 0.3))',
+                            }}
+                        />
                     </div>
                 </Reveal>
 
