@@ -649,6 +649,9 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   position: relative;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .photo-card:hover {
@@ -667,6 +670,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
   transition: transform 0.6s ease;
 }
 
@@ -711,8 +715,8 @@ body {
 
 /* Hero Photo Card */
 .photo-card-hero {
-  max-width: 100%;
-  margin: 32px 0;
+  max-width: 600px;
+  margin: 32px auto;
 }
 
 .photo-card-hero .photo-card-img-wrap {
@@ -723,16 +727,23 @@ body {
 .photo-gallery {
   display: grid;
   gap: 16px;
-  margin: 32px 0;
+  margin: 32px auto;
+  max-width: 700px;
+}
+
+/* Inside galleries, cards don't need their own max-width */
+.photo-gallery .photo-card {
+  max-width: none;
 }
 
 /* --- Video Embed --- */
 .video-embed {
   border-radius: 16px;
   overflow: hidden;
-  margin: 32px 0;
+  margin: 32px auto;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 600px;
 }
 
 .video-embed video {
@@ -787,6 +798,19 @@ body {
 
   .photo-gallery {
     grid-template-columns: 1fr !important;
+    max-width: none;
+  }
+
+  .photo-card {
+    max-width: none;
+  }
+
+  .photo-card-hero {
+    max-width: none;
+  }
+
+  .video-embed {
+    max-width: none;
   }
 }
 
