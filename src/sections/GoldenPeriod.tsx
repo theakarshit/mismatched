@@ -1,4 +1,5 @@
 import { Reveal, StatCard, TimelineItem, Particles, HeroStat, SpotifyEmbed, PhotoCard, PhotoGallery, VideoEmbed } from '../components'
+import { HiddenStar } from '../interactive'
 
 export default function GoldenPeriod() {
     return (
@@ -154,6 +155,9 @@ export default function GoldenPeriod() {
                         <SpotifyEmbed trackId="1fkjRQA8wXPPyxqYLbxuqy" />
                     </div>
                 </Reveal>
+
+                {/* Hidden Star 3 */}
+                <HiddenStar id={3} style={{ position: 'absolute', top: '50%', right: '15px' }} />
             </div>
         </section>
     )

@@ -1,4 +1,5 @@
 import { Reveal, ChatBubble, QuoteBlock, SpotifyEmbed, PhotoCard, PhotoGallery } from '../components'
+import { HiddenStar } from '../interactive'
 
 export default function TheUnraveling() {
     return (
@@ -125,6 +126,9 @@ export default function TheUnraveling() {
                         <SpotifyEmbed trackId="3f9dNrQR4stx9CCfpqZVSf" />
                     </div>
                 </Reveal>
+
+                {/* Hidden Star 5 */}
+                <HiddenStar id={5} style={{ position: 'absolute', top: '30%', left: '10px' }} />
             </div>
         </section>
     )

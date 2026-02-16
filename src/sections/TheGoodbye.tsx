@@ -1,4 +1,5 @@
 import { Reveal, ChatBubble, SpotifyEmbed, Particles } from '../components'
+import { HiddenStar } from '../interactive'
 
 export default function TheGoodbye() {
     return (
@@ -234,6 +235,9 @@ export default function TheGoodbye() {
                         <SpotifyEmbed trackId="6V7QyA9N0Zp7C6k8qsYfpm" />
                     </div>
                 </Reveal>
+
+                {/* Hidden Star 6 */}
+                <HiddenStar id={6} style={{ position: 'absolute', bottom: '80px', left: '25px' }} />
             </div>
         </section>
     )

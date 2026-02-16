@@ -1,4 +1,5 @@
 import { Reveal, ChatBubble, StatCard, QuoteBlock, SpotifyEmbed, Particles, PhotoCard, PhotoGallery, VideoEmbed } from '../components'
+import { HiddenStar } from '../interactive'
 
 export default function TheSpark() {
     return (
@@ -265,6 +266,9 @@ export default function TheSpark() {
                         </p>
                     </div>
                 </Reveal>
+
+                {/* Hidden Star 2 */}
+                <HiddenStar id={2} style={{ position: 'absolute', bottom: '40px', left: '20px' }} />
             </div>
         </section>
     )

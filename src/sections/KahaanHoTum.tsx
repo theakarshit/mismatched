@@ -1,4 +1,5 @@
 import { Reveal, HeroStat, Particles } from '../components'
+import { HiddenStar, MessageMachine } from '../interactive'
 
 export default function KahaanHoTum() {
     return (
@@ -156,6 +157,14 @@ export default function KahaanHoTum() {
                         </p>
                     </div>
                 </Reveal>
+
+                {/* Message Machine — interactive memory picker */}
+                <Reveal delay={5}>
+                    <MessageMachine />
+                </Reveal>
+
+                {/* Hidden Star 7 — final secret */}
+                <HiddenStar id={7} style={{ position: 'absolute', bottom: '20px', right: '50%' }} />
             </div>
         </section>
     )

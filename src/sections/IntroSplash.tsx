@@ -1,4 +1,5 @@
 import { Reveal, Particles } from '../components'
+import { HiddenStar } from '../interactive'
 
 export default function IntroSplash() {
     const scrollDown = () => {
@@ -92,6 +93,9 @@ export default function IntroSplash() {
                         </div>
                     </div>
                 </Reveal>
+
+                {/* Hidden Star 1 — near the opening */}
+                <HiddenStar id={1} style={{ position: 'absolute', top: '20px', right: '40px' }} />
             </div>
 
             {/* Scroll indicator */}

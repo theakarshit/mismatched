@@ -1,4 +1,5 @@
 import { Reveal, ChatBubble, HeroStat, QuoteBlock, Particles, SpotifyEmbed, PhotoCard, PhotoGallery, VideoEmbed } from '../components'
+import { HiddenStar } from '../interactive'
 
 export default function TheDrift() {
     return (
@@ -244,6 +245,9 @@ export default function TheDrift() {
                         />
                     </PhotoGallery>
                 </Reveal>
+
+                {/* Hidden Star 4 */}
+                <HiddenStar id={4} style={{ position: 'absolute', bottom: '60px', right: '30px' }} />
             </div>
         </section>
     )
