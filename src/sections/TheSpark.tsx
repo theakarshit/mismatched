@@ -262,7 +262,7 @@ export default function TheSpark() {
                             />
                         </div>
                         <p className="text-muted" style={{ marginTop: '16px', fontStyle: 'italic', fontSize: '0.85rem' }}>
-                            A new number. A new chapter. 19,070 more messages to go.
+                            A new number. A new chapter. 14,296 more messages to go.
                         </p>
                     </div>
                 </Reveal>
