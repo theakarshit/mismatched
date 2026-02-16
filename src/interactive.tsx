@@ -299,6 +299,16 @@ export function MessageMachine() {
             .catch(() => { })
     }, [])
 
+    // Navigate to a specific message number instantly (for arrows)
+    const goTo = useCallback((num: number) => {
+        if (!data || num < 1 || num > data.total) return
+        const msg = data.messages[num - 1]
+        setMessage(msg)
+        setInput(String(num))
+        setIsGolden(data.golden.includes(num))
+        logEvent('message_picked', `nav:#${num}`)
+    }, [data])
+
     const reveal = useCallback(() => {
         if (!data || !input) return
         const num = parseInt(input)
@@ -330,6 +340,26 @@ export function MessageMachine() {
     }, [data])
 
     if (!data) return null
+
+    const canGoPrev = message && message.id > 1
+    const canGoNext = message && message.id < data.total
+
+    // Shared arrow button style
+    const arrowStyle = (enabled: boolean): React.CSSProperties => ({
+        background: enabled ? 'rgba(255,255,255,0.06)' : 'transparent',
+        border: `1px solid ${enabled ? 'rgba(255,107,107,0.25)' : 'rgba(255,255,255,0.06)'}`,
+        borderRadius: '50%',
+        width: '40px',
+        height: '40px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: enabled ? 'pointer' : 'default',
+        color: enabled ? 'var(--cream)' : 'rgba(255,255,255,0.15)',
+        fontSize: '1rem',
+        transition: 'all 0.2s ease',
+        flexShrink: 0,
+    })
 
     return (
         <div style={{
@@ -426,78 +456,116 @@ export function MessageMachine() {
                 </button>
             </div>
 
-            {/* Message display */}
+            {/* Message display with arrow navigation */}
             {(message || isRevealing) && (
                 <div style={{
                     marginTop: '28px',
-                    padding: '24px',
-                    background: isGolden
-                        ? 'linear-gradient(135deg, rgba(255,215,61,0.08), rgba(255,107,107,0.08))'
-                        : 'rgba(255,255,255,0.03)',
-                    border: `1px solid ${isGolden ? 'rgba(255,215,61,0.3)' : 'rgba(255,255,255,0.08)'}`,
-                    borderRadius: '16px',
-                    animation: 'fadeInUp 0.5s ease',
-                    position: 'relative'
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
                 }}>
-                    {isRevealing ? (
-                        <div style={{
-                            color: 'var(--whisper-gray)',
-                            fontStyle: 'italic',
-                            animation: 'pulse 1s infinite'
-                        }}>
-                            Finding that moment...
-                        </div>
-                    ) : message && (
-                        <>
-                            {isGolden && (
-                                <div style={{
-                                    position: 'absolute',
-                                    top: '-10px',
-                                    right: '16px',
-                                    fontSize: '0.65rem',
-                                    background: 'linear-gradient(135deg, #FFD73D, #FF6B6B)',
-                                    padding: '3px 10px',
-                                    borderRadius: '8px',
-                                    color: '#111',
-                                    fontWeight: 700,
-                                    letterSpacing: '1px'
-                                }}>
-                                    ✦ GOLDEN
-                                </div>
-                            )}
+                    {/* Left arrow */}
+                    <button
+                        onClick={() => canGoPrev && goTo(message!.id - 1)}
+                        style={arrowStyle(!!canGoPrev)}
+                        aria-label="Previous message"
+                        onMouseEnter={(e) => {
+                            if (canGoPrev) e.currentTarget.style.borderColor = 'rgba(255,107,107,0.5)'
+                        }}
+                        onMouseLeave={(e) => {
+                            if (canGoPrev) e.currentTarget.style.borderColor = 'rgba(255,107,107,0.25)'
+                        }}
+                    >
+                        ‹
+                    </button>
+
+                    {/* Message card */}
+                    <div style={{
+                        flex: 1,
+                        padding: '24px',
+                        background: isGolden
+                            ? 'linear-gradient(135deg, rgba(255,215,61,0.08), rgba(255,107,107,0.08))'
+                            : 'rgba(255,255,255,0.03)',
+                        border: `1px solid ${isGolden ? 'rgba(255,215,61,0.3)' : 'rgba(255,255,255,0.08)'}`,
+                        borderRadius: '16px',
+                        animation: 'fadeInUp 0.5s ease',
+                        position: 'relative'
+                    }}>
+                        {isRevealing ? (
                             <div style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'space-between',
-                                marginBottom: '12px',
-                                fontSize: '0.75rem',
                                 color: 'var(--whisper-gray)',
-                                opacity: 0.6
-                            }}>
-                                <span>Message #{message.id.toLocaleString()}</span>
-                                <span>{message.d} · {message.t}</span>
-                            </div>
-                            <p style={{
-                                color: message.w === 'him' ? 'var(--soft-lavender)' : 'var(--blush-pink)',
-                                fontSize: '0.8rem',
-                                fontWeight: 600,
-                                marginBottom: '8px',
-                                textTransform: 'uppercase',
-                                letterSpacing: '2px'
-                            }}>
-                                {message.w === 'him' ? 'Akarshit' : 'Harshika'}
-                            </p>
-                            <p style={{
-                                color: 'var(--cream)',
-                                fontSize: '1.05rem',
-                                lineHeight: 1.7,
                                 fontStyle: 'italic',
-                                margin: 0
+                                animation: 'pulse 1s infinite'
                             }}>
-                                "{message.m}"
-                            </p>
-                        </>
-                    )}
+                                Finding that moment...
+                            </div>
+                        ) : message && (
+                            <>
+                                {isGolden && (
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: '-10px',
+                                        right: '16px',
+                                        fontSize: '0.65rem',
+                                        background: 'linear-gradient(135deg, #FFD73D, #FF6B6B)',
+                                        padding: '3px 10px',
+                                        borderRadius: '8px',
+                                        color: '#111',
+                                        fontWeight: 700,
+                                        letterSpacing: '1px'
+                                    }}>
+                                        ✦ GOLDEN
+                                    </div>
+                                )}
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    marginBottom: '12px',
+                                    fontSize: '0.75rem',
+                                    color: 'var(--whisper-gray)',
+                                    opacity: 0.6
+                                }}>
+                                    <span>Message #{message.id.toLocaleString()}</span>
+                                    <span>{message.d} · {message.t}</span>
+                                </div>
+                                <p style={{
+                                    color: message.w === 'him' ? 'var(--soft-lavender)' : 'var(--blush-pink)',
+                                    fontSize: '0.8rem',
+                                    fontWeight: 600,
+                                    marginBottom: '8px',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '2px'
+                                }}>
+                                    {message.w === 'him' ? 'Akarshit' : 'Harshika'}
+                                </p>
+                                <p style={{
+                                    color: 'var(--cream)',
+                                    fontSize: '1.05rem',
+                                    lineHeight: 1.7,
+                                    fontStyle: 'italic',
+                                    margin: 0
+                                }}>
+                                    "{message.m}"
+                                </p>
+                            </>
+                        )}
+                    </div>
+
+                    {/* Right arrow */}
+                    <button
+                        onClick={() => canGoNext && goTo(message!.id + 1)}
+                        style={arrowStyle(!!canGoNext)}
+                        aria-label="Next message"
+                        onMouseEnter={(e) => {
+                            if (canGoNext) e.currentTarget.style.borderColor = 'rgba(255,107,107,0.5)'
+                        }}
+                        onMouseLeave={(e) => {
+                            if (canGoNext) e.currentTarget.style.borderColor = 'rgba(255,107,107,0.25)'
+                        }}
+                    >
+                        ›
+                    </button>
                 </div>
             )}
         </div>
