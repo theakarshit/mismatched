@@ -94,7 +94,7 @@ export default function TheSpark() {
                             The Goa Retreat
                         </h3>
                         <p className="text-body" style={{ marginBottom: '20px' }}>
-                            October 2–6. What was supposed to be a professional retreat
+                            October 2–10. What was supposed to be a professional retreat
                             became the place where everything shifted. Dancing in the rain,
                             pool moments nobody recorded, midnight conversations that had
                             nothing to do with work.
