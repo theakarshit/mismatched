@@ -37,7 +37,7 @@ export default function TheUnraveling() {
                         <div className="chat-container">
                             <ChatBubble
                                 sender="Akarshit"
-                                message="It ends here. I gave my best, you gave excuses."
+                                message="It ends here. I don't know how to fix this anymore."
                                 time="Sep 29, 11:47 PM"
                                 type="sent"
                             />
@@ -103,7 +103,7 @@ export default function TheUnraveling() {
                             <br />
                             I said it <span style={{ color: 'var(--whisper-gray)' }}>4 times — none of them emotional</span>.
                             <br /><br />
-                            But I built you a website that made you cry.
+                            Maybe that says more about me than about us.
                         </p>
                     </div>
                 </Reveal>

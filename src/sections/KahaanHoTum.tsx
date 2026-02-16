@@ -44,7 +44,7 @@ export default function KahaanHoTum() {
                         <tbody>
                             <tr>
                                 <td>Rishi builds things for Dimple — grand gestures, letters, shows of love</td>
-                                <td>I built her a website that made her cry, gave her my iPad, wrote her letters</td>
+                                <td>I showed love through actions — but couldn't say the words she needed to hear</td>
                             </tr>
                             <tr>
                                 <td>Dimple says "I need space to breathe"</td>
