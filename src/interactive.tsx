@@ -631,7 +631,7 @@ export function UnsentLetter() {
                             This website isn't about getting you back. It's about making sure what we had doesn't just disappear into old chat threads and forgotten photo albums.
                         </p>
                         <p style={{ marginTop: '12px' }}>
-                            14,292 messages. 970 calls. Every late-night conversation that made the next morning harder but so worth it.
+                            15,025 messages. 970 calls. Every late-night conversation that made the next morning harder but so worth it.
                         </p>
                         <p style={{ marginTop: '12px' }}>
                             You were the best part of my 2024 and 2025. That's not nostalgia talking — the data literally proves it.

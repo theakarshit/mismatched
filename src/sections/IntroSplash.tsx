@@ -79,7 +79,7 @@ export default function IntroSplash() {
                 <Reveal delay={4}>
                     <div style={{ marginBottom: '40px' }}>
                         <div className="stat-hero-number" style={{ fontSize: 'clamp(3rem, 8vw, 5rem)' }}>
-                            19,814
+                            15,025
                         </div>
                         <div className="text-handwritten" style={{
                             color: 'var(--blush-pink)',

@@ -67,7 +67,7 @@ export default function TheSpark() {
                             />
                         </div>
                         <p className="text-muted" style={{ textAlign: 'center', marginTop: '16px', fontStyle: 'italic', fontSize: '0.85rem' }}>
-                            That's it. That's how 19,814 messages started. A scheduling text.
+                            That's it. That's how 15,025 messages started. A scheduling text.
                         </p>
                     </div>
                 </Reveal>

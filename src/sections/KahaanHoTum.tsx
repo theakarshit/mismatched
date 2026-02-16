@@ -76,7 +76,7 @@ export default function KahaanHoTum() {
                         textAlign: 'center'
                     }}>
                         {[
-                            { num: '19,814', label: 'messages' },
+                            { num: '15,025', label: 'messages' },
                             { num: '16', label: 'months' },
                             { num: '970', label: 'calls' },
                             { num: '5,900', label: 'late-night messages' },
@@ -153,7 +153,7 @@ export default function KahaanHoTum() {
                             made with too many feelings and not enough sleep
                         </p>
                         <p style={{ fontSize: '0.65rem', marginTop: '8px', color: 'var(--whisper-gray)' }}>
-                            inspired by Mismatched · built with love · 19,814 messages later
+                            inspired by Mismatched · built with love · 15,025 messages later
                         </p>
                     </div>
                 </Reveal>
