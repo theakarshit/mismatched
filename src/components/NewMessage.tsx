@@ -1,26 +1,26 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
 
 /* ─────────────────────────────────────────
    Top Banner — "You have a new message"
    ───────────────────────────────────────── */
 export function NewMessageBanner() {
-    const [dismissed, setDismissed] = useState(false)
+    const [hiding, setHiding] = useState(false)
+    const [gone, setGone] = useState(false)
 
     const scrollToBottom = () => {
         const el = document.getElementById('new-message-section')
         if (el) {
-            // Use scrollTo with computed offset for cross-browser/mobile reliability
             const y = el.getBoundingClientRect().top + window.pageYOffset - 20
             window.scrollTo({ top: y, behavior: 'smooth' })
         } else {
-            // Fallback: scroll to absolute bottom
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
         }
-        // Delay dismissal so the scroll starts before the banner unmounts
-        setTimeout(() => setDismissed(true), 300)
+        // Fade out then remove
+        setHiding(true)
+        setTimeout(() => setGone(true), 600)
     }
 
-    if (dismissed) return null
+    if (gone) return null
 
     return (
         <div
@@ -32,7 +32,9 @@ export function NewMessageBanner() {
                 transform: 'translateX(-50%)',
                 zIndex: 1000,
                 cursor: 'pointer',
-                animation: 'bannerSlideIn 0.8s ease forwards, bannerPulse 2s ease-in-out 1s infinite',
+                animation: hiding
+                    ? 'bannerFadeOut 0.5s ease forwards'
+                    : 'bannerSlideIn 0.8s ease forwards, bannerPulse 2s ease-in-out 1s infinite',
             }}
         >
             <style>
@@ -45,36 +47,49 @@ export function NewMessageBanner() {
                     0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,107,0.4); }
                     50% { box-shadow: 0 0 0 12px rgba(255,107,107,0); }
                 }
+                @keyframes bannerFadeOut {
+                    to { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+                }
                 `}
             </style>
             <div style={{
                 background: 'rgba(26, 26, 46, 0.95)',
                 backdropFilter: 'blur(12px)',
                 border: '1px solid rgba(255,107,107,0.3)',
-                borderRadius: '50px',
-                padding: '12px 24px',
+                borderRadius: '16px',
+                padding: '14px 24px',
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
-                gap: '12px',
+                gap: '6px',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
             }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{
+                        background: 'var(--netflix-red)',
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        display: 'inline-block',
+                        animation: 'bannerPulse 1.5s ease-in-out infinite',
+                    }} />
+                    <span style={{
+                        color: 'var(--cream)',
+                        fontSize: '0.85rem',
+                        fontFamily: 'var(--font-body)',
+                        letterSpacing: '0.5px',
+                    }}>
+                        New message from <span style={{ color: 'var(--blush-pink)' }}>Akarshit</span>
+                    </span>
+                </div>
                 <span style={{
-                    background: 'var(--netflix-red)',
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    display: 'inline-block',
-                    animation: 'bannerPulse 1.5s ease-in-out infinite',
-                }} />
-                <span style={{
-                    color: 'var(--cream)',
-                    fontSize: '0.85rem',
+                    fontSize: '0.7rem',
+                    color: 'var(--whisper-gray)',
                     fontFamily: 'var(--font-body)',
-                    letterSpacing: '0.5px',
+                    opacity: 0.7,
                 }}>
-                    New message from <span style={{ color: 'var(--blush-pink)' }}>Akarshit</span>
+                    scroll to the bottom ↓
                 </span>
-                <span style={{ fontSize: '0.7rem', color: 'var(--whisper-gray)' }}>↓</span>
             </div>
         </div>
     )
@@ -87,9 +102,17 @@ export function NewMessageReveal() {
     const [stage, setStage] = useState(0)
     const sectionRef = useRef<HTMLDivElement>(null)
 
-    const advance = () => {
+    // Advance stage while preserving scroll position
+    const advance = useCallback((e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        const scrollY = window.scrollY
         setStage((prev) => Math.min(prev + 1, 4))
-    }
+        // Restore scroll after React re-render
+        requestAnimationFrame(() => {
+            window.scrollTo(0, scrollY)
+        })
+    }, [])
 
     const whatsappUrl = `https://wa.me/447440197477?text=${encodeURIComponent(
         "Akarshit, so about that cold coffee prepared by my mom… ?"
