@@ -5,7 +5,7 @@ import TheDrift from './sections/TheDrift'
 import TheUnraveling from './sections/TheUnraveling'
 import TheGoodbye from './sections/TheGoodbye'
 import KahaanHoTum from './sections/KahaanHoTum'
-import { StarProgress, UnsentLetter, useSessionTracker } from './interactive'
+import { StarProgress, useSessionTracker } from './interactive'
 import { PasswordGate } from './components/PasswordGate'
 import { NewMessageBanner, NewMessageReveal } from './components/NewMessage'
 
@@ -24,7 +24,6 @@ export default function App() {
                 <TheUnraveling />
                 <TheGoodbye />
                 <KahaanHoTum />
-                <UnsentLetter />
                 <NewMessageReveal />
             </main>
         </PasswordGate>
