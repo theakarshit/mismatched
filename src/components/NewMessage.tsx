@@ -9,9 +9,15 @@ export function NewMessageBanner() {
     const scrollToBottom = () => {
         const el = document.getElementById('new-message-section')
         if (el) {
-            el.scrollIntoView({ behavior: 'smooth' })
+            // Use scrollTo with computed offset for cross-browser/mobile reliability
+            const y = el.getBoundingClientRect().top + window.pageYOffset - 20
+            window.scrollTo({ top: y, behavior: 'smooth' })
+        } else {
+            // Fallback: scroll to absolute bottom
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
         }
-        setDismissed(true)
+        // Delay dismissal so the scroll starts before the banner unmounts
+        setTimeout(() => setDismissed(true), 300)
     }
 
     if (dismissed) return null
