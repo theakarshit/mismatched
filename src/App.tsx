@@ -7,12 +7,14 @@ import TheGoodbye from './sections/TheGoodbye'
 import KahaanHoTum from './sections/KahaanHoTum'
 import { StarProgress, UnsentLetter, useSessionTracker } from './interactive'
 import { PasswordGate } from './components/PasswordGate'
+import { NewMessageBanner, NewMessageReveal } from './components/NewMessage'
 
 export default function App() {
     useSessionTracker()
 
     return (
         <PasswordGate>
+            <NewMessageBanner />
             <main>
                 <StarProgress />
                 <IntroSplash />
@@ -23,6 +25,7 @@ export default function App() {
                 <TheGoodbye />
                 <KahaanHoTum />
                 <UnsentLetter />
+                <NewMessageReveal />
             </main>
         </PasswordGate>
     )
