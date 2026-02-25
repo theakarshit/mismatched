@@ -86,7 +86,7 @@ export function NewMessageReveal() {
     }
 
     const whatsappUrl = `https://wa.me/447440197477?text=${encodeURIComponent(
-        "Hey Akarshit! So about that chai with mom… 😄"
+        "Hey Akarshit! So about that cold coffee with mom… 😄"
     )}`
 
     return (
@@ -129,7 +129,7 @@ export function NewMessageReveal() {
                         lineHeight: 1.3,
                         marginBottom: '32px',
                     }}>
-                        I want to meet you.
+                        I want to meet.
                     </h2>
                 </div>
 
@@ -159,7 +159,7 @@ export function NewMessageReveal() {
                                 e.currentTarget.style.color = 'var(--whisper-gray)'
                             }}
                         >
-                            Wait, really? →
+                            Wait, not really →
                         </button>
                     </div>
                 )}
@@ -242,10 +242,17 @@ export function NewMessageReveal() {
                         }}>
                             But genuinely — I miss talking to aunty.
                             <br />
-                            The random calls, the chai conversations, the way she'd
-                            ask about my day like she actually cared.
+                            The random cold coffees, the banter that would go on forever,
+                            and those random gyaan sessions about mythology that I'd pretend
+                            to know about but was secretly learning from.
                             <br /><br />
-                            So here's the deal: one chai.
+                            I know she's probably mad at me right now.
+                            <br />
+                            <span style={{ opacity: 0.6 }}>(Valid. Completely valid.)</span>
+                            <br />
+                            But that's exactly why I want to fix it.
+                            <br /><br />
+                            So here's the deal: one cold coffee.
                             <br />
                             You can supervise if you want. 😏
                         </p>
@@ -324,7 +331,7 @@ export function NewMessageReveal() {
                                     e.currentTarget.style.boxShadow = '0 4px 24px rgba(255,107,107,0.3)'
                                 }}
                             >
-                                Fine, one chai ☕
+                                Fine, one cold coffee 🧊
                             </a>
                             <button
                                 onClick={advance}
