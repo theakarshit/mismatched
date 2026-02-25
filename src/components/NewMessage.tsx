@@ -86,7 +86,7 @@ export function NewMessageReveal() {
     }
 
     const whatsappUrl = `https://wa.me/447440197477?text=${encodeURIComponent(
-        "Hey Akarshit! So about that cold coffee with mom… 😄"
+        "Akarshit, so about that cold coffee prepared by my mom… ?"
     )}`
 
     return (
