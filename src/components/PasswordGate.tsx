@@ -138,7 +138,7 @@ function ErrorScreen() {
                         lineHeight: 2,
                         marginBottom: '16px',
                     }}>
-                        The page you're looking for has been moved.
+                        The page you're looking for has been removed.
                         <br />
                         Or maybe it was never meant to stay.
                     </p>
